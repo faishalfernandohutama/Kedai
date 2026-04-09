@@ -1,8 +1,10 @@
 <script setup>
 import { Icon } from "@iconify/vue";
+import AppLayout from "./layout/appLayout.vue";
 </script>
 
 <template>
+<AppLayout/>
   <section class="min-h-screen px-10 py-10 bg-gray-50">
     <div>
       <nav class="flex justify-between items-center">
