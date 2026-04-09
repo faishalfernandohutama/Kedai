@@ -1,6 +1,14 @@
 <script setup>
   import { Icon } from "@iconify/vue";
   import AppLayout from "./layout/appLayout.vue";
+  import { ref } from "vue";
+
+  const activeCategory = ref("All Menu");
+  const categories = [
+    { name: "All Menu", icon: "🍽️", count: "58 Item" },
+    { name: "Coffee", icon: "☕", count: "20 Item" },
+    { name: "Tea", icon: "🍵", count: "16 Item" },
+  ];
 </script>
 
 <template>
@@ -40,6 +48,39 @@
             </div>
           </div>
         </nav>
+        <div class="mt-10">
+          <h2 class="text-xl font-bold text-gray-800 mb-4">categories</h2>
+          <div class="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+            <button
+              v-for="category in categories"
+              :key="category.name"
+              @click="activeCategory = category.name"
+              :class="[
+                'flex flex-col items-center justify-center min-w-[120px] py-4 px-2 rounded-2xl border-2 transition-all duration-300' /* <-- INI KOMANYA */,
+                activeCategory === category.name
+                  ? 'bg-orange-50 border-orange-400 shadow-sm'
+                  : 'bg-white border-transparent shadow-sm hover:border-gray-200',
+              ]"
+            >
+              <span class="text-3xl mb-2">{{ category.icon }}</span>
+
+              <span
+                :class="[
+                  'text-sm font-bold',
+                  activeCategory === category.name
+                    ? 'text-orange-600'
+                    : 'text-gray-800',
+                ]"
+              >
+                {{ category.name }}
+              </span>
+
+              <span class="text-xs text-gray-400 mt-1">{{
+                category.count
+              }}</span>
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   </AppLayout>
